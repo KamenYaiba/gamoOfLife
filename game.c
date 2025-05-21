@@ -11,7 +11,55 @@ int newbornsIdx = 0;
 
 int main()
 {
-    
+    board[5][1] = LIVE;
+    board[5][2] = LIVE;
+    board[6][1] = LIVE;
+    board[6][2] = LIVE;
+
+    board[5][11] = LIVE;
+    board[6][11] = LIVE;
+    board[7][11] = LIVE;
+    board[4][12] = LIVE;
+    board[8][12] = LIVE;
+    board[3][13] = LIVE;
+    board[9][13] = LIVE;
+    board[3][14] = LIVE;
+    board[9][14] = LIVE;
+    board[6][15] = LIVE;
+    board[4][16] = LIVE;
+    board[8][16] = LIVE;
+    board[5][17] = LIVE;
+    board[6][17] = LIVE;
+    board[7][17] = LIVE;
+    board[6][18] = LIVE;
+
+    board[3][21] = LIVE;
+    board[4][21] = LIVE;
+    board[5][21] = LIVE;
+    board[3][22] = LIVE;
+    board[4][22] = LIVE;
+    board[5][22] = LIVE;
+    board[2][23] = LIVE;
+    board[6][23] = LIVE;
+    board[1][25] = LIVE;
+    board[2][25] = LIVE;
+    board[6][25] = LIVE;
+    board[7][25] = LIVE;
+
+    board[3][35] = LIVE;
+    board[4][35] = LIVE;
+    board[3][36] = LIVE;
+    board[4][36] = LIVE;
+
+
+    int gameOn = 1;
+    while(gameOn)
+    {
+        printBoard();
+        updateCells();
+        sleep_ms(UPDATE_COOLDOWN);
+        //printf(CLEAR_SEQ);
+    }
 }
 
 
