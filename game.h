@@ -13,9 +13,9 @@
 #define CLEAR_SEQ "\x1b[2J\x1b[H"
 #define BOARD_DIM 64
 #define LIVE_CHAR '#'
-#define REFRESH_RATE 20
+#define REFRESH_RATE 1
 
-#define UPDATE_COOLDOWN ((60 / REFRESH_RATE) * 1000)
+#define UPDATE_COOLDOWN (1000 / REFRESH_RATE)
 
 #define ROW 0
 #define COL 1
@@ -26,6 +26,7 @@
 
 int printBoard();
 void sleep_ms(int millis);
+int updateCells();
 int countLiveNeighbors(int i, int j);
 int lifeCycle();
 
