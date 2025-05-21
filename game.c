@@ -15,13 +15,29 @@ int updateCells()
     {
         for(int j = 0; j < BOARD_DIM; j++)
         {
-            
+            if()
         }
     }
 }
 
 
 
+int countLiveNeighbors(int i, int j)
+{
+    int counter = 0;
+
+    if(i>0 && board[i-1][j]) counter++;
+    if(i<BOARD_DIM-1 && board[i+1][j]) counter++;
+    if(j>0 && board[i][j-1]) counter++;
+    if(j<BOARD_DIM-1 && board[i][j+1]) counter++;
+
+    if(i>0 && j>0 && board[i-1][j-1]) counter++;
+    if(i<BOARD_DIM-1 && j<BOARD_DIM-1 && board[i+1][j+1]) counter++;
+    if(i<BOARD_DIM-1 && j>0 && board[i+1][j-1]) counter++;
+    if(i>0 && j<BOARD_DIM-1 && board[i-1][j+1]) counter++;
+
+    return counter;
+}
 
 
 
