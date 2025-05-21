@@ -1,0 +1,54 @@
+#include "game.h"
+
+uint8_t board[BOARD_DIM][BOARD_DIM];
+
+
+int main()
+{
+
+}
+
+
+int updateCells()
+{
+    for(int i = 0; i < BOARD_DIM; i++)
+    {
+        for(int j = 0; j < BOARD_DIM; j++)
+        {
+            
+        }
+    }
+}
+
+
+
+
+
+
+int printBoard()
+{
+    printf(CLEAR_SEQ);
+    for(int i = 0; i < BOARD_DIM; i++)
+    {
+        for(int j = 0; j < BOARD_DIM; j++)
+            printf(board[i][j]? LIVE_CHAR: " ");
+    }
+}
+
+
+
+
+
+//inspired by rafaelglikis on github
+void sleep_ms(int millis)
+{
+    #ifdef _WIN32
+        #include <windows.h>
+        Sleep(millis);
+    #elif defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
+        #include <unistd.h>
+        sleep(millis / 1000);
+    #else
+        usleep(millis);
+    #endif
+}
