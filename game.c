@@ -1,23 +1,48 @@
 #include "game.h"
 
 uint8_t board[BOARD_DIM][BOARD_DIM];
+uint8_t deathRow[BOARD_DIM * BOARD_DIM][2];
+uint8_t newborns [BOARD_DIM * BOARD_DIM][2];
+
+int deathRowIdx = 0;
+int newbornsIdx = 0;
+
 
 
 int main()
 {
-
+    
 }
 
 
 int updateCells()
 {
+    int liveNeighbors = 0;
+    int changed = 0;
     for(int i = 0; i < BOARD_DIM; i++)
     {
         for(int j = 0; j < BOARD_DIM; j++)
         {
-            if()
+            liveNeighbors = countLiveNeighbors(i, j);
+            if((liveNeighbors < 2 || liveNeighbors > 3) && !board[i][j])
+            {
+                changed = 1;
+                deathRow[deathRowIdx][ROW] = i;
+                deathRow[deathRowIdx++][COL] = j;
+            }
+            else if(liveNeighbors == 3 && board[i][j])
+            {
+                changed = 1;
+                newborns[deathRowIdx][ROW] = i;
+                newborns[deathRowIdx++][COL] = j;
+            }
         }
     }
+
+    if(changed)
+        lifeCycle();
+
+    return changed;
 }
 
 
@@ -39,6 +64,25 @@ int countLiveNeighbors(int i, int j)
     return counter;
 }
 
+int lifeCycle()
+{
+    for(int i = 0; i < deathRowIdx; i ++)
+    {
+        int r = deathRow[i][ROW];
+        int c = deathRow[i][COL];
+
+        board[r][c] = DEAD;
+    }
+
+    for(int i = 0; i < newbornsIdx; i ++)
+    {
+        int r = newborns[i][ROW];
+        int c = newborns[i][COL];
+
+        board[r][c] = LIVE;
+    }
+}
+
 
 
 int printBoard()
@@ -47,7 +91,7 @@ int printBoard()
     for(int i = 0; i < BOARD_DIM; i++)
     {
         for(int j = 0; j < BOARD_DIM; j++)
-            printf(board[i][j]? LIVE_CHAR: " ");
+            printf("%c", board[i][j]? LIVE_CHAR: ' ');
     }
 }
 
@@ -59,12 +103,8 @@ int printBoard()
 void sleep_ms(int millis)
 {
     #ifdef _WIN32
-        #include <windows.h>
         Sleep(millis);
-    #elif defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
-        #include <unistd.h>
-        sleep(millis / 1000);
     #else
-        usleep(millis);
+        usleep(millis * 1000);
     #endif
 }
