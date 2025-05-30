@@ -10,10 +10,11 @@
 #endif
 
 
-#define CLEAR_SEQ "\x1b[2J\x1b[H"
-#define BOARD_DIM 64
+#define CLEAR_SEQ "\e[1;1H\e[2J"
+#define FRAME_LEN 20
+#define FRAME_WID 50
 #define LIVE_CHAR '#'
-#define REFRESH_RATE 1
+#define REFRESH_RATE 10
 
 #define UPDATE_COOLDOWN (1000 / REFRESH_RATE)
 
@@ -22,6 +23,7 @@
 #define LIVE 1
 #define DEAD 0
 
+#define IJ_TO_PIXEL_NUM(i, j) (i * (FRAME_WID+1) + j)
 
 
 int printBoard();
@@ -29,6 +31,8 @@ void sleep_ms(int millis);
 int updateCells();
 int countLiveNeighbors(int i, int j);
 int lifeCycle();
+int gosperGliderGun_20x50();
+int setup();
 
 
 #endif
